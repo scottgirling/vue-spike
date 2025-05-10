@@ -365,66 +365,66 @@ const recipeCard = ref("recipeCard");
 const recipeTitle = ref("recipeTitle");
 const recipeInfo = ref("recipeInfo");
 const button = ref("button");
-
+const ul = ref("ul");
 </script>
 
 <template>
     <h1>Recipe List</h1>
     <p>Current Recipe Count: {{ recipeCount }}</p>
     <button @click="recipeCount++">Increase Count</button>
-    <ul>
-        <li class="recipeCard" v-for="recipe in recipeData" :key="recipe.recipe_id">
-            <!-- {{console.log(JSON.stringify(recipe))}} -->
-            <h2 class="recipeTitle">{{ recipe.name }}</h2>
-            <div class="recipeInfo">
-                <div>
-                    <p>Posted by: {{ recipe.created_by }}</p>
-                    <p>Likes: {{ recipe.votes }}</p>
-                </div>
-                <div>
-                    <p>Prep: {{ recipe.prep_time }} minutes</p>
-                    <p>Cook: {{ recipe.cook_time }} minutes</p>
-                </div>
-            </div>
-            <router-link :to="{ name: 'SingleRecipe', params: { recipe_id: recipe.recipe_id }, 
-            state: { recipe: JSON.stringify(recipe) }
-            }">
-                View Recipe
-        </router-link>
-        </li>
+    <ul class="ul">
+      <li class="recipeCard" v-for="recipe in recipeData" :key="recipe.recipe_id">
+          <h2 class="recipeTitle">{{ recipe.name }}</h2>
+          <div class="recipeInfo">
+              <div>
+                  <p>Posted by: {{ recipe.created_by }}</p>
+                  <p>Likes: {{ recipe.votes }}</p>
+              </div>
+              <div>
+                  <p>Prep: {{ recipe.prep_time }} minutes</p>
+                  <p>Cook: {{ recipe.cook_time }} minutes</p>
+              </div>
+          </div>
+          <router-link :to="{ name: 'SingleRecipe', params: {   recipe_id: recipe.recipe_id } }">
+            View Recipe
+          </router-link>
+      </li>
     </ul>
 </template>
 
 <style scoped>
 .recipeCard {
-    display: inline-block;
-    margin: .5rem;
-    padding: .75rem 0;
-    flex-direction: column;
-    border: 2px solid #87bba2;
-    border-radius: 15px;
-    width: 40vw;
-    text-align: center;
-    :hover {
-        cursor: pointer;
-        font-weight: bold;
-    }
+  display: inline-block;
+  margin: .5rem;
+  padding: .75rem 0;
+  flex-direction: column;
+  border: 2px solid #87bba2;
+  border-radius: 15px;
+  width: 40vw;
+  text-align: center;
+  :hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
 
 .recipeTitle {
-    font-weight: 500;
-    margin-bottom: .75rem;
+  font-weight: 500;
+  margin-bottom: .75rem;
 }
 
 .recipeInfo {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button {
-    background-color: #87bba2;
-    border: 1px solid #87bba2;
-    border-radius: 8px;
-    padding: .25rem .5rem;
+  background-color: #87bba2;
+  border: 1px solid #87bba2;
+  border-radius: 8px;
+  padding: .25rem .5rem;
+}
+.ul {
+  padding-left: 0;
 }
 </style>
